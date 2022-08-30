@@ -8,7 +8,7 @@ const Navbar = () => {
     setIsNavOpen((prev) => !prev);
   };
   return (
-    <div className="sticky top-0 left-0 z-50 text-sm font-semibold bg-white font-sans-serif navbar text-slate-900 backdrop-blur-2xl sm:h-[14vh]  ">
+    <div className="sticky top-0 left-0 z-50 text-sm font-semibold bg-white font-sans-serif navbar text-slate-900 backdrop-blur-2xl sm:h-[14vh] xl:px-32 lg:px-20 ">
       <div className=" navbar-start">
         <div className="">
           <label className="btn btn-ghost lg:hidden" onClick={handleNav}>
@@ -89,20 +89,25 @@ const Navbar = () => {
           <li className="justify-between">
             <NavLink to="/">HOME</NavLink>
           </li>
-          <li className="h-24">
+          <li className="">
             <NavLink to="/cart">CART</NavLink>
           </li>
-          <li className="h-24">
+          <li className="">
             <NavLink to="/order">ORDER</NavLink>
           </li>
         </ul>
       </div>
       <div className="gap-2 navbar-end">
-        <label htmlFor="registerModal">
-          <button className="h-10 text-white rounded-none btn btn-primary">
-            MY CART
+        <NavLink to="/cart">
+          <button className="btn btn-primary btn-outline">
+            <img
+              src={require("../assets/shopping-cart.png")}
+              alt="shopping-icon"
+              className="scale-75"
+            />
+            <div className="badge badge-accent">2</div>
           </button>
-        </label>
+        </NavLink>
       </div>
     </div>
   );
