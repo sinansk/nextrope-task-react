@@ -6,12 +6,11 @@ import { BookType } from "../types";
 
 const Home = () => {
   const [page, setPage] = useState(1);
-  const [books, setBooks] = useState([]);
+  const [products, setProducts] = useState<BookType[]>([]);
   const getBooks = async () => {
     try {
-      const { data } = await publicRequest.get("/book?page=" + page);
-      setBooks(data.data);
-      console.log(data.data);
+      const { data } = await publicRequest.get<BooksType>("/book?page=" + page);
+      setProducts(data.data);
     } catch (err) {
       console.log(err);
     }
@@ -31,9 +30,9 @@ const Home = () => {
 
   return (
     <div>
-      <div className="flex flex-col items-center gap-1 sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 sm:gap-3 sm:h-full">
-        {books?.map((book) => (
-          <Book book={book} key={book} />
+      <div className="flex flex-col items-center gap-1 sm:items-center sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 sm:gap-3 sm:h-full">
+        {products?.map((product) => (
+          <Book product={product} key={product.id} />
         ))}
       </div>
       <div className="flex">

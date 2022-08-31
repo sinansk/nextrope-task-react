@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="fixed bottom-0 left-0 right-0 p-10 rounded footer footer-center bg-base-200 text-base-content">
+    <footer className="p-10 mt-auto mb-0 rounded footer footer-center bg-base-200 text-base-content">
       <div className="grid grid-flow-col gap-4">
         <Link to="/" className="link link-hover">
           Home
@@ -13,7 +13,11 @@ const Footer = () => {
       </div>
       <div>
         <div className="grid grid-flow-col gap-4">
-          <a href="https://github.com/sinansk" target="_blank" rel="noreferrer">
+          <a
+            href="https://github.com/sinansk/nextrope-task-react"
+            target="_blank"
+            rel="noreferrer"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"

@@ -18,3 +18,29 @@ export interface BooksType {
   data: BookType[];
   metadata: Metadata;
 }
+
+export interface OrderItem {
+  id: number;
+  quantity: number;
+}
+
+export interface OrderResponse {
+  id: number;
+  order: OrderItem[];
+  first_name: string;
+  last_name: string;
+  city: string;
+  zip_code: string;
+}
+
+export interface OrderRes {
+  data: OrderResponse;
+}
+
+export interface OrderRequest {
+  order: OrderItem[];
+  first_name: string;
+  last_name: string;
+  city: string;
+  zip_code: string;
+}

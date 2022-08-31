@@ -9,14 +9,14 @@ function App() {
   return (
     <>
       <Navbar />
-      <div className="relative grid h-full mx-auto xl:px-32 lg:px-20">
+      <div className="grid mx-auto xl:px-32 xl:py-16 lg:px-20 lg:py-10">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="cart" element={<Cart />} />
           <Route path="order" element={<Order />} />
         </Routes>
       </div>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }

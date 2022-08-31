@@ -1,14 +1,17 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { useAppSelector } from "../redux/store";
 
 const Navbar = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
-
+  const cartProductsLenght = useAppSelector(
+    (state) => state.cartProducts.length
+  );
   const handleNav = () => {
     setIsNavOpen((prev) => !prev);
   };
   return (
-    <div className="sticky top-0 left-0 z-50 text-sm font-semibold bg-white font-sans-serif navbar text-slate-900 backdrop-blur-2xl sm:h-[14vh] xl:px-32 lg:px-20 ">
+    <div className="sticky top-0 left-0 z-50 border-b-[0.5px] border-slate-700 text-sm font-semibold bg-white font-sans-serif navbar text-slate-900 backdrop-blur-2xl sm:h-[14vh] xl:px-32 lg:px-20 ">
       <div className=" navbar-start">
         <div className="">
           <label className="btn btn-ghost lg:hidden" onClick={handleNav}>
@@ -79,7 +82,7 @@ const Navbar = () => {
           </div>
         </NavLink>
         <NavLink to="/">
-          <p className="font-serif text-xl font-bold cursor-pointer">
+          <p className="hidden font-serif text-xl font-bold cursor-pointer sm:flex">
             BOOKSTROPE
           </p>
         </NavLink>
@@ -105,7 +108,7 @@ const Navbar = () => {
               alt="shopping-icon"
               className="scale-75"
             />
-            <div className="badge badge-accent">2</div>
+            <div className="badge badge-accent">{cartProductsLenght}</div>
           </button>
         </NavLink>
       </div>
