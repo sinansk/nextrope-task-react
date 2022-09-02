@@ -2,7 +2,7 @@
 
 ##### Nextrope Frontend Task
 
-##### Task details are [here]().
+##### Task details are [here](https://github.com/sinansk/nextrope-task-react/blob/main/task-description.md).
 
 ## Run project on local
 
@@ -22,5 +22,6 @@
 - `Axios`
 - `React Router`
 - `Formik`
+- `Yup`
 
 [![React Book Shop](https://github.com/sinansk/sinans.dev/blob/main/src/images/book-shop.PNG)]()
