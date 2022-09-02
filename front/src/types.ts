@@ -16,7 +16,7 @@ export interface Metadata {
 
 export interface BooksType {
   data: BookType[];
-  metadata: Metadata;
+  // metadata: Metadata;
 }
 
 export interface OrderItem {

@@ -1,19 +1,20 @@
 import { BookType } from "../../src/types";
 import { useAppDisptch } from "../redux/store";
-import { addProduct, removeProduct } from "../redux/cartRedux";
+import { addProduct } from "../redux/cartSlice";
 import { FunctionComponent } from "react";
 interface IBookProps {
   product: BookType;
 }
 
 const Book: FunctionComponent<IBookProps> = (props) => {
+  const { product } = props;
+
   const dispatch = useAppDisptch();
 
   const addToCartHandler = (product: BookType) => {
     dispatch(addProduct(product));
   };
 
-  const { product } = props;
   return (
     <div className="flex flex-col shadow-xl card bg-base-100">
       <figure>

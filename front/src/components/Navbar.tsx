@@ -1,17 +1,17 @@
 import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useAppSelector } from "../redux/store";
 
 const Navbar = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
-  const cartProductsLenght = useAppSelector(
-    (state) => state.cartProducts.length
+  const cartProductsLength = useAppSelector(
+    (state) => state.cart.cartProducts.length
   );
   const handleNav = () => {
     setIsNavOpen((prev) => !prev);
   };
   return (
-    <div className="sticky top-0 left-0 z-50 border-b-[0.5px] border-slate-700 text-sm font-semibold bg-white font-sans-serif navbar text-slate-900 backdrop-blur-2xl sm:h-[14vh] xl:px-32 lg:px-20 ">
+    <div className="sticky top-0 left-0 z-50 border-b-[0.5px] border-primary opacity-95 text-sm font-semibold bg-white font-sans-serif navbar  backdrop-blur-2xl sm:h-[14vh] xl:px-32 lg:px-20 ">
       <div className=" navbar-start">
         <div className="">
           <label className="btn btn-ghost lg:hidden" onClick={handleNav}>
@@ -63,16 +63,6 @@ const Navbar = () => {
                   HOME
                 </li>
               </NavLink>
-              <NavLink to="/cart">
-                <li className="my-8 uppercase border-b border-gray-400">
-                  CART
-                </li>
-              </NavLink>
-              <NavLink to="/order">
-                <li className="my-8 uppercase border-b border-gray-400">
-                  ORDER
-                </li>
-              </NavLink>
             </ul>
           </div>
         </div>
@@ -92,12 +82,6 @@ const Navbar = () => {
           <li className="justify-between">
             <NavLink to="/">HOME</NavLink>
           </li>
-          <li className="">
-            <NavLink to="/cart">CART</NavLink>
-          </li>
-          <li className="">
-            <NavLink to="/order">ORDER</NavLink>
-          </li>
         </ul>
       </div>
       <div className="gap-2 navbar-end">
@@ -108,7 +92,7 @@ const Navbar = () => {
               alt="shopping-icon"
               className="scale-75"
             />
-            <div className="badge badge-accent">{cartProductsLenght}</div>
+            <div className="badge badge-accent">{cartProductsLength}</div>
           </button>
         </NavLink>
       </div>

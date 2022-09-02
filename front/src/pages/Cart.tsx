@@ -1,11 +1,17 @@
-import { Link, useNavigate } from "react-router-dom";
-import { useAppSelector, useAppDisptch } from "../redux/store";
-import { addProduct, removeProduct, emptyCart } from "../redux/cartRedux";
 import { BookType } from "../types";
+import { useNavigate } from "react-router-dom";
+import { useAppSelector, useAppDisptch } from "../redux/store";
+import {
+  addProduct,
+  removeProduct,
+  emptyCart,
+  getTotalPrice,
+} from "../redux/cartSlice";
+
 const Cart = () => {
+  const cartProducts = useAppSelector((state) => state.cart.cartProducts);
+  const totalPrice = useAppSelector(getTotalPrice);
   const dispatch = useAppDisptch();
-  const cartProducts = useAppSelector((state) => state.cartProducts);
-  console.log({ cartProducts });
   let navigate = useNavigate();
 
   const navigateToOrder = () => {
@@ -37,11 +43,11 @@ const Cart = () => {
           <div className="mb-5 ">
             <ul className="">
               {cartProducts?.map((product) => (
-                <li className="flex flex-row gap-3 mb-5">
+                <li key={product.id} className="flex flex-row gap-3 mb-5">
                   <img
                     src={product.cover_url}
                     alt="book"
-                    className="w-40 h-40 rounded-lg"
+                    className="w-32 h-40 rounded-lg"
                   />
                   <div className="">
                     <h2 className="mb-2 text-xl font-semibold">
@@ -68,8 +74,8 @@ const Cart = () => {
                       >
                         +
                       </span>
-                      <span>{product.amount}</span>
-                      {product.amount > 1 ? (
+                      <span>{product.quantity}</span>
+                      {product.quantity > 1 ? (
                         <span
                           onClick={() => removeFromCartHandler(product.id)}
                           className="cursor-pointer"
@@ -93,20 +99,25 @@ const Cart = () => {
                         </span>
                       )}
                     </div>
-                    <h2>{product.price * product.amount} PLN</h2>
+                    <h2>{product.price * product.quantity} PLN</h2>
                   </div>
                 </li>
               ))}
             </ul>
+            <div>
+              <h2 className="text-right text-3xl font-semibold underline">
+                TOTAL: {totalPrice} PLN
+              </h2>
+            </div>
           </div>
-          <button onClick={navigateToOrder} className="btn btn-warning">
+          <button onClick={navigateToOrder} className="btn btn-primary">
             NEXT
           </button>
         </div>
       ) : (
         <div className="grid items-center w-1/2 gap-10 m-auto text-3xl font-semibold text-center h-1/2">
           <h2>YOUR CART IS EMPTY</h2>
-          <button onClick={navigateToHome} className="btn btn-warning">
+          <button onClick={navigateToHome} className="btn btn-primary">
             CONTINUE SHOPPING
           </button>
         </div>

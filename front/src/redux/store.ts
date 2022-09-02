@@ -1,5 +1,4 @@
-import { configureStore, Store } from "@reduxjs/toolkit";
-import cartReducer from "./cartRedux";
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
 
 import {
   persistStore,
@@ -13,6 +12,8 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import booksSlice from "./booksSlice";
+import cartSlice from "./cartSlice";
 
 const persistConfig = {
   key: "root",
@@ -20,7 +21,7 @@ const persistConfig = {
   storage,
 };
 
-const rootReducer = cartReducer;
+const rootReducer = combineReducers({ books: booksSlice, cart: cartSlice });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 

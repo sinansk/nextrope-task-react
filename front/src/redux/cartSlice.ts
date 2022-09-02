@@ -1,8 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { BookType } from "../types";
+import { RootState } from "./store";
 
-interface CartProduct extends BookType {
-  amount: number;
+export interface CartProduct extends BookType {
+  quantity: number;
 }
 
 const cartSlice = createSlice({
@@ -12,26 +13,23 @@ const cartSlice = createSlice({
   },
   reducers: {
     addProduct: (state, action: PayloadAction<BookType>) => {
-      console.log(action.payload);
-      console.log(state.cartProducts);
       const itemIndex = state.cartProducts?.findIndex(
         (product) => product.id === action.payload.id
       );
       console.log(itemIndex);
       if (itemIndex !== -1) {
-        state.cartProducts[itemIndex].amount += 1;
+        state.cartProducts[itemIndex].quantity += 1;
       } else {
-        state.cartProducts.push({ ...action.payload, amount: 1 });
+        state.cartProducts.push({ ...action.payload, quantity: 1 });
       }
     },
-    removeProduct: (state, action: PayloadAction<any>) => {
-      console.log(action.payload);
+    removeProduct: (state, action: PayloadAction<number>) => {
       const itemIndex = state.cartProducts?.findIndex(
         (product) => product.id === action.payload
       );
-      console.log(itemIndex);
-      if (state.cartProducts[itemIndex].amount > 1) {
-        state.cartProducts[itemIndex].amount -= 1;
+
+      if (state.cartProducts[itemIndex].quantity > 1) {
+        state.cartProducts[itemIndex].quantity -= 1;
       } else {
         const updatedCart = state.cartProducts.filter(
           (product) => product.id !== action.payload
@@ -41,10 +39,13 @@ const cartSlice = createSlice({
     },
     emptyCart: (state) => {
       state.cartProducts = [] as CartProduct[];
-      console.log("burdayım");
     },
   },
 });
-
+export const getTotalPrice = (state: RootState) =>
+  state.cart.cartProducts.reduce(
+    (acc, next) => (acc += next.quantity * next.price),
+    0
+  );
 export const { addProduct, removeProduct, emptyCart } = cartSlice.actions;
 export default cartSlice.reducer;

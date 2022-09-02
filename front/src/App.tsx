@@ -9,7 +9,7 @@ function App() {
   return (
     <>
       <Navbar />
-      <div className="grid mx-auto xl:px-32 xl:py-16 lg:px-20 lg:py-10">
+      <div className="grid mx-auto p-2 xl:px-32 xl:py-16 lg:px-20 lg:py-10 ">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="cart" element={<Cart />} />
