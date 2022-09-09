@@ -24,4 +24,4 @@
 - `Formik`
 - `Yup`
 
-[![React Book Shop](https://github.com/sinansk/sinans.dev/blob/main/src/images/book-shop.PNG)]()
+[![React Book Shop](https://github.com/sinansk/nextrope-task-react/blob/main/front/public/nextrope-task-book-shop.png)]()
